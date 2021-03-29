@@ -7,7 +7,7 @@ var (
 		0, 0, 0, 1, // entries len
 		0, 0, 0, 1, // entity len
 		0, 4, 'u', 's', 'e', 'r', // entity type
-		255, 255, 	// entity value
+		255, 255, // entity value
 		0, 0, 0, 1, // ops len
 		0, 18, 'p', 'r', 'o', 'd', 'u', 'c', 'e', 'r', '_', 'b', 'y', 't', 'e', '_', 'r', 'a', 't', 'e', // op key
 		65, 46, 132, 128, 0, 0, 0, 0, // op value (1000000)
@@ -19,7 +19,7 @@ var (
 		0, 0, 0, 1, // entries len
 		0, 0, 0, 1, // entity len
 		0, 4, 'u', 's', 'e', 'r', // entity type
-		255, 255, 	// entity value
+		255, 255, // entity value
 		0, 0, 0, 1, // ops len
 		0, 18, 'p', 'r', 'o', 'd', 'u', 'c', 'e', 'r', '_', 'b', 'y', 't', 'e', '_', 'r', 'a', 't', 'e', // op key
 		0, 0, 0, 0, 0, 0, 0, 0, // op value (ignored)
@@ -31,11 +31,11 @@ var (
 		0, 0, 0, 1, // entries len
 		0, 0, 0, 1, // entity len
 		0, 4, 'u', 's', 'e', 'r', // entity type
-		255, 255, 	// entity value
+		255, 255, // entity value
 		0, 0, 0, 2, // ops len
 		0, 18, 'p', 'r', 'o', 'd', 'u', 'c', 'e', 'r', '_', 'b', 'y', 't', 'e', '_', 'r', 'a', 't', 'e', // op key
 		65, 46, 132, 128, 0, 0, 0, 0, // op value (1000000)
-		0, // remove
+		0,                                                                                               // remove
 		0, 18, 'c', 'o', 'n', 's', 'u', 'm', 'e', 'r', '_', 'b', 'y', 't', 'e', '_', 'r', 'a', 't', 'e', // op key
 		65, 46, 132, 128, 0, 0, 0, 0, // op value (1000000)
 		0, // remove
@@ -46,21 +46,20 @@ var (
 		0, 0, 0, 2, // entries len
 		0, 0, 0, 1, // entity len
 		0, 4, 'u', 's', 'e', 'r', // entity type
-		255, 255, 	// entity value
+		255, 255, // entity value
 		0, 0, 0, 1, // ops len
 		0, 18, 'p', 'r', 'o', 'd', 'u', 'c', 'e', 'r', '_', 'b', 'y', 't', 'e', '_', 'r', 'a', 't', 'e', // op key
 		65, 46, 132, 128, 0, 0, 0, 0, // op value (1000000)
-		0, // remove
+		0,          // remove
 		0, 0, 0, 1, // entity len
-		0, 9, 'c','l','i','e','n','t','-','i','d', // entity type
-		255, 255, 	// entity value
+		0, 9, 'c', 'l', 'i', 'e', 'n', 't', '-', 'i', 'd', // entity type
+		255, 255, // entity value
 		0, 0, 0, 1, // ops len
 		0, 18, 'c', 'o', 'n', 's', 'u', 'm', 'e', 'r', '_', 'b', 'y', 't', 'e', '_', 'r', 'a', 't', 'e', // op key
 		65, 46, 132, 128, 0, 0, 0, 0, // op value (1000000)
 		0, // remove
 		0, // validate only
 	}
-
 )
 
 func TestAlterClientQuotasRequest(t *testing.T) {
@@ -94,7 +93,7 @@ func TestAlterClientQuotasRequest(t *testing.T) {
 		ValidateOnly: true,
 	}
 	testRequest(t, "Remove single Quota op", req, alterClientQuotasRequestRemoveSingleOp)
-	
+
 	// Add multiple Quotas ops
 	op1 := &ClientQuotasOp{
 		Key:    "producer_byte_rate",
@@ -140,6 +139,4 @@ func TestAlterClientQuotasRequest(t *testing.T) {
 		ValidateOnly: false,
 	}
 	testRequest(t, "Add multiple Quotas Entries", req, alterClientQuotasRequestMultipleQuotasEntries)
-
-		
 }

@@ -75,24 +75,28 @@ func (a *AlterClientQuotasEntryResponse) encode(pe packetEncoder) error {
 	pe.putInt16(int16(a.ErrorCode))
 
 	// ErrorMsg
+	var err error
 	if a.ErrorMsg == "" {
-		pe.putNullableString(nil)
-	} else if err := pe.putString(a.ErrorMsg); err != nil {
+		err = pe.putNullableString(nil)
+	} else {
+		err = pe.putString(a.ErrorMsg)
+	}
+	if err != nil {
 		return err
 	}
 
 	// Entity
-	if err := pe.putArrayLength(len(a.Entity)); err != nil {
+	if err = pe.putArrayLength(len(a.Entity)); err != nil {
 		return err
 	}
 
 	for entityType, entityName := range a.Entity {
 		// entity_type
-		if err := pe.putString(entityType); err != nil {
+		if err = pe.putString(entityType); err != nil {
 			return err
 		}
 		// entity_name
-		if err := pe.putNullableString(entityName); err != nil {
+		if err = pe.putNullableString(entityName); err != nil {
 			return err
 		}
 	}

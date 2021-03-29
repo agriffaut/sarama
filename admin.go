@@ -941,7 +941,6 @@ func (ca *clusterAdmin) DescribeLogDirs(brokerIds []int32) (allLogDirs map[int32
 // Contains components: strict = false
 // Contains only components: strict = true
 func (ca *clusterAdmin) DescribeClientQuotas(components []*DescribeClientQuotasComponent, strict bool) ([]*DescribeClientQuotasEntry, error) {
-
 	request := &DescribeClientQuotasRequest{
 		Components: components,
 		Strict:     strict,
@@ -965,7 +964,6 @@ func (ca *clusterAdmin) DescribeClientQuotas(components []*DescribeClientQuotasC
 }
 
 func (ca *clusterAdmin) AlterClientQuotas(entity map[string]*string, op ClientQuotasOp, validateOnly bool) error {
-
 	entry := &AlterClientQuotasEntry{
 		Entity: entity,
 		Ops:    []*ClientQuotasOp{&op},

@@ -36,18 +36,22 @@ func (d *DescribeClientQuotasResponse) encode(pe packetEncoder) error {
 	pe.putInt16(int16(d.ErrorCode))
 
 	// ErrorMsg
+	var err error
 	if d.ErrorMsg == "" {
-		pe.putNullableString(nil)
-	} else if err := pe.putString(d.ErrorMsg); err != nil {
+		err = pe.putNullableString(nil)
+	} else {
+		err = pe.putString(d.ErrorMsg)
+	}
+	if err != nil {
 		return err
 	}
 
 	// Entries
-	if err := pe.putArrayLength(len(d.Entries)); err != nil {
+	if err = pe.putArrayLength(len(d.Entries)); err != nil {
 		return err
 	}
 	for _, e := range d.Entries {
-		if err := e.encode(pe); err != nil {
+		if err = e.encode(pe); err != nil {
 			return err
 		}
 	}

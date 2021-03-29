@@ -43,12 +43,12 @@ func TestAlterClientQuotasResponse(t *testing.T) {
 	// Response with error
 	entry := &AlterClientQuotasEntryResponse{
 		ErrorCode: KError(42),
-		ErrorMsg: "Unhandled client quota entity type: faulty",
-		Entity: map[string]*string{"faulty": nil},
+		ErrorMsg:  "Unhandled client quota entity type: faulty",
+		Entity:    map[string]*string{"faulty": nil},
 	}
 	res := &AlterClientQuotasResponse{
 		ThrottleTime: 0,
-		Entries: []*AlterClientQuotasEntryResponse{entry},
+		Entries:      []*AlterClientQuotasEntryResponse{entry},
 	}
 	testResponse(t, "Response With Error", res, alterClientQuotasResponseError)
 
@@ -58,7 +58,7 @@ func TestAlterClientQuotasResponse(t *testing.T) {
 	}
 	res = &AlterClientQuotasResponse{
 		ThrottleTime: 0,
-		Entries: []*AlterClientQuotasEntryResponse{entry},
+		Entries:      []*AlterClientQuotasEntryResponse{entry},
 	}
 	testResponse(t, "Altered single entry", res, alterClientQuotasResponseSingleEntry)
 
@@ -71,8 +71,7 @@ func TestAlterClientQuotasResponse(t *testing.T) {
 	}
 	res = &AlterClientQuotasResponse{
 		ThrottleTime: 0,
-		Entries: []*AlterClientQuotasEntryResponse{entry1, entry2},
+		Entries:      []*AlterClientQuotasEntryResponse{entry1, entry2},
 	}
 	testResponse(t, "Altered multiple entries", res, alterClientQuotasResponseMultipleEntries)
-	
 }
